@@ -1,3 +1,5 @@
+package config;
+
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 
@@ -7,7 +9,7 @@ import java.util.Properties;
 
 public class SetUp {
 
-    Properties prop;
+    public Properties prop;
     @BeforeTest
     public void setUp() throws IOException {
         //Read for Config File

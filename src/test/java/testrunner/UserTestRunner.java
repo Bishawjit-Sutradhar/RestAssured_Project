@@ -1,15 +1,26 @@
+package testrunner;
+
 import com.github.javafaker.Faker;
+import config.SetUp;
+import config.UserModel;
+import controller.UserController;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.apache.commons.configuration.ConfigurationException;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-public class UserTestRunner extends SetUp{
+import utils.Utils;
+public class UserTestRunner extends SetUp {
+    UserController userController;
+    @BeforeClass
+    public void myUserController(){
+        userController=new UserController(prop);
+    }
 
     @Test(priority = 1,description = "User Login")
     public void doLogin() throws ConfigurationException {
-        UserController userController=new UserController(prop);
+        //UserController userController=new UserController(prop);
         UserModel userModel=new UserModel();
         userModel.setEmail("admin@dmoney.com");
         userModel.setPassword("1234");
@@ -23,7 +34,7 @@ public class UserTestRunner extends SetUp{
 
     @Test(priority = 2,description = "User create")
     public void createUser() throws ConfigurationException {
-        UserController userController=new UserController(prop);
+        //UserController userController=new UserController(prop);
         UserModel userModel=new UserModel();
 
         Faker faker=new Faker();
@@ -31,7 +42,7 @@ public class UserTestRunner extends SetUp{
         userModel.setName(faker.name().fullName());
         userModel.setEmail(faker.internet().emailAddress().toString());
         userModel.setPassword("1234");
-        userModel.setPhone_number("0120"+Utils.randomNumberGenerate(1000000,9999999));
+        userModel.setPhone_number("0120"+ Utils.randomNumberGenerate(1000000,9999999));
         userModel.setNid("1231390");
         userModel.setRole("Customer");
         Response res= userController.createUser(userModel);
@@ -64,7 +75,7 @@ public class UserTestRunner extends SetUp{
 
     @Test(priority = 3,description = "User Search by Id")
     public void searchUserById() throws InterruptedException {
-        UserController userController=new UserController(prop);
+        //UserController userController=new UserController(prop);
         Response res= userController.searchUser(prop.getProperty("Id"));
         System.out.println(res.asString());
 
