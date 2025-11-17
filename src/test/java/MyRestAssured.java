@@ -10,14 +10,14 @@ import java.util.Properties;
 
 import static io.restassured.RestAssured.given;
 
-public class MyRestAssured {
+public class MyRestAssured extends SetUp{
 
     Properties prop;
     public MyRestAssured() throws IOException {
-        //Read for Config File
         prop=new Properties();
         FileInputStream fs=new FileInputStream("./src/test/resources/config.properties");
         prop.load(fs);
+
     }
 
     @Test
@@ -56,10 +56,10 @@ public class MyRestAssured {
                 .header("Authorization","bearer "+prop.getProperty("token"))
                 .header("X-AUTH-SECRET-KEY",prop.getProperty("partnerKey"))
                 .body("{\n" +
-                        "  \"name\": \"kamal Khan\",\n" +
-                        "  \"email\": \"kamal123@gmial.com\",\n" +
+                        "  \"name\": \"Jamal Khan\",\n" +
+                        "  \"email\": \"Jamal123@gmial.com\",\n" +
                         "  \"password\": \"12345\",\n" +
-                        "  \"phone_number\": \"01723626335\",\n" +
+                        "  \"phone_number\": \"01723026335\",\n" +
                         "  \"nid\": \"12671234\",\n" +
                         "  \"role\": \"Customer\"\n" +
                         "}")

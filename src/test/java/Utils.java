@@ -10,4 +10,9 @@ public class Utils {
 
     }
 
+    public static int randomNumberGenerate(int min,int max){
+        double randomId= Math.random()*(max-min)+min;
+        return (int) randomId;
+    }
+
 }
